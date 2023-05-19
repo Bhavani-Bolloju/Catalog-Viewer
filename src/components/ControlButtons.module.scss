@@ -1,0 +1,29 @@
+.control-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 2rem;
+  button {
+    background-color: transparent;
+    border: none;
+
+    svg {
+      width: 6rem;
+      height: 6rem;
+      background-color: blue;
+      fill: #eee;
+      color: #eee;
+      padding: 1rem;
+      border-radius: 50%;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  // svg {
+  //   width: 8rem;
+  //   height: 8rem;
+  // }
+}
