@@ -17,10 +17,13 @@ body {
 }
 
 .app {
-  padding: 5rem;
+  padding: 2rem 5rem;
   display: flex;
   gap: 2rem;
   width: 100%;
+  @media screen and (max-width: 950px) {
+    display: block;
+  }
 }
 
 .content {

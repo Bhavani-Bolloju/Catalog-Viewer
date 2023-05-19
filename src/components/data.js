@@ -12,42 +12,52 @@ import image10 from "../assets/image-10.jpg";
 export const data = [
   {
     image: image1,
-    id: 1
+    id: 1,
+    title: "mercedes"
   },
   {
     image: image2,
-    id: 2
+    id: 2,
+    title: "Northern lights"
   },
   {
     image: image3,
-    id: 3
+    id: 3,
+    title: "ocean"
   },
   {
     image: image4,
-    id: 4
+    id: 4,
+    title: "adventure"
   },
   {
     image: image5,
-    id: 5
+    id: 5,
+    title: "bike"
   },
   {
     image: image6,
-    id: 6
+    id: 6,
+    title: "under water"
   },
   {
     image: image7,
-    id: 7
+    id: 7,
+    title: "flowers"
   },
   {
     image: image8,
-    id: 8
+    id: 8,
+    title: "moutains"
   },
   {
     image: image9,
-    id: 9
+    id: 9,
+    title: "sunset"
   },
   {
     image: image10,
-    id: 10
+    id: 10,
+    title: "forest"
   }
 ];

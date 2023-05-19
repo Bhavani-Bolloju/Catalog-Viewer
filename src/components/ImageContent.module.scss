@@ -1,0 +1,20 @@
+.content {
+  @media screen and (max-width: 950px) {
+    display: none;
+  }
+  h1 {
+    font-size: 4.5rem;
+    text-transform: capitalize;
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1rem;
+  }
+
+  &__text {
+    font-size: 1.6rem;
+    line-height: 1.5;
+    p {
+      margin-bottom: 1rem;
+    }
+  }
+}

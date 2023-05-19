@@ -9,16 +9,17 @@ import ButtonDirections from "./ButtonDirections.js";
 interface ImageType {
   image: string;
   id: number;
+  title: string;
 }
 
 type Props = {
-  isPlaying: boolean;
+  onSlide: (direction: string) => void;
+  onSetImage: (num: number) => void;
+  currentImage: number;
 };
 
 const Catalog: React.FC<Props> = (props) => {
-  const [currentImage, setCurrentImage] = useState(1);
-
-  let displayImage = data[+currentImage - 1].image;
+  let displayImage = data[+props.currentImage - 1].image;
 
   const itemsRef: MutableRefObject<HTMLElement | null> = React.useRef(null);
 
@@ -41,34 +42,6 @@ const Catalog: React.FC<Props> = (props) => {
     }
   }
 
-  useEffect(() => {
-    let slider: number;
-    if (props.isPlaying) {
-      slider = setInterval(() => {
-        if (currentImage >= data.length) {
-          setCurrentImage(1);
-        } else {
-          setCurrentImage((prev) => (prev += 1));
-        }
-      }, 3000);
-    }
-    return () => clearInterval(slider);
-  }, [props.isPlaying, currentImage]);
-
-  const sliderHandler = function (direction: string) {
-    const total = data.length;
-
-    if (direction == "left") {
-      currentImage > 1
-        ? setCurrentImage((prev) => (prev -= 1))
-        : setCurrentImage(total);
-    } else {
-      currentImage >= total
-        ? setCurrentImage(1)
-        : setCurrentImage((prev) => (prev += 1));
-    }
-  };
-
   const refHandler = function (node: RefObject<HTMLDivElement>, id: number) {
     const map = getMap();
     if (node) {
@@ -79,17 +52,21 @@ const Catalog: React.FC<Props> = (props) => {
   };
 
   useEffect(() => {
-    scrollToId(currentImage);
-  }, [currentImage]);
+    scrollToId(props.currentImage);
+  }, [props.currentImage]);
 
   const selectImageHandler = function (num: number) {
-    setCurrentImage(num);
+    props.onSetImage(num);
   };
 
   return (
     <div className={classes.catalog}>
       <div className={classes["catalog-container"]}>
-        <Image url={displayImage} />
+        <Image
+          url={displayImage}
+          id={props.currentImage}
+          title={data[props.currentImage].title}
+        />
       </div>
       <div className={classes["catalog-tumbnail"]}>
         <div className={classes["tumbnail-container"]}>
@@ -97,7 +74,9 @@ const Catalog: React.FC<Props> = (props) => {
             {data.map((image: ImageType) => (
               <div
                 className={`${classes["image"]} ${
-                  classes[image.id === currentImage ? "image--active" : ""]
+                  classes[
+                    image.id === props.currentImage ? "image--active" : ""
+                  ]
                 }`}
                 key={image.id}
                 ref={(node) => refHandler(node, image.id)}
@@ -109,8 +88,8 @@ const Catalog: React.FC<Props> = (props) => {
           </div>
         </div>
         <ButtonDirections
-          onLeftClick={sliderHandler.bind(null, "left")}
-          onRightClick={sliderHandler.bind(null, "right")}
+          onLeftClick={props.onSlide.bind(null, "left")}
+          onRightClick={props.onSlide.bind(null, "right")}
         />
       </div>
     </div>

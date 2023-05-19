@@ -14,4 +14,22 @@
     height: 100%;
     object-fit: cover;
   }
+
+  .catalog-heading {
+    display: none;
+    @media screen and (max-width: 950px) {
+      display: block;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 2%;
+      font-size: 2rem;
+      display: flex;
+      gap: 1rem;
+      background-color: #eeeeee73;
+      padding: 1rem 4rem;
+      border-radius: 1rem;
+      text-transform: capitalize;
+    }
+  }
 }
